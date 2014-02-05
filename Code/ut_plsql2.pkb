@@ -202,7 +202,7 @@ Added Standard Headers
          THEN
             utreport.pl (
                   'Procedure execution Error "'
-               || SQLERRM
+               || DBMS_UTILITY.FORMAT_ERROR_STACK||CHR(10)||DBMS_UTILITY.FORMAT_ERROR_BACKTRACE
                || '" on: '
             );
             utreport.pl (v_str);
@@ -217,7 +217,7 @@ Added Standard Headers
                   'Procedure named "'
                || procedure_in
                || '" could not be executed.',
-               SQLERRM
+               DBMS_UTILITY.FORMAT_ERROR_STACK||CHR(10)||DBMS_UTILITY.FORMAT_ERROR_BACKTRACE
             );
          ELSE
             utrerror.utp_report (
@@ -227,7 +227,7 @@ Added Standard Headers
                   'Procedure named "'
                || procedure_in
                || '" could not be executed.',
-               SQLERRM
+               DBMS_UTILITY.FORMAT_ERROR_STACK||CHR(10)||DBMS_UTILITY.FORMAT_ERROR_BACKTRACE
             );
          END IF;
    /*
@@ -374,7 +374,7 @@ Added Standard Headers
             utplsql2.runnum,
             utp_rec.id,
             SQLCODE,
-            SQLERRM,
+            DBMS_UTILITY.FORMAT_ERROR_STACK||CHR(10)||DBMS_UTILITY.FORMAT_ERROR_BACKTRACE,
             raiseexc=> FALSE
          );
          cleanup (utp_rec);
@@ -453,7 +453,7 @@ Added Standard Headers
             utplsql2.runnum,
             suite_rec.id,
             SQLCODE,
-            SQLERRM,
+            DBMS_UTILITY.FORMAT_ERROR_STACK||CHR(10)||DBMS_UTILITY.FORMAT_ERROR_BACKTRACE,
             raiseexc=> FALSE
          );
    END;

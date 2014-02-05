@@ -1013,7 +1013,7 @@ Added Standard Headers
          clean_up_file_io (c_progname, fid, 'internal_error');
       WHEN OTHERS
       THEN
-         clean_up_file_io (c_progname, fid, SQLERRM);
+         clean_up_file_io (c_progname, fid, DBMS_UTILITY.FORMAT_ERROR_STACK||CHR(10)||DBMS_UTILITY.FORMAT_ERROR_BACKTRACE);
    END testpkg_from_file;
 
    PROCEDURE testpkg_from_string (

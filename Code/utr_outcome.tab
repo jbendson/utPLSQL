@@ -6,7 +6,7 @@ CREATE TABLE utr_outcome (
    start_on date,
    end_on date,
    status varchar2(100),
-   description varchar2(2000)
+   description varchar2(4000)
 );
 
 REM 2.0.9.1 Record order of execution of test.
