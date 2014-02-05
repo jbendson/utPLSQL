@@ -68,7 +68,7 @@ Added Standard Headers
          utrerror.oc_report (run_id_in
                            , outcome_id_in
                            , SQLCODE
-                           , SQLERRM
+                           , DBMS_UTILITY.FORMAT_ERROR_STACK||CHR(10)||DBMS_UTILITY.FORMAT_ERROR_BACKTRACE
                            ,    'Unable to initiate outcome for run '
                              || run_id_in
                              || ' outcome ID '
@@ -115,7 +115,7 @@ Added Standard Headers
          UPDATE utr_outcome
             SET end_on = end_on_in
               , status = l_status
-              , description = description_in
+              , description = SUBSTR( description_in, 1, 4000)
           WHERE run_id = run_id_in AND outcome_id = outcome_id_in;
       ELSIF start_cur%FOUND AND rec.end_on IS NOT NULL
       THEN
@@ -127,7 +127,7 @@ Added Standard Headers
                     , end_on, description
                      )
               VALUES (run_id_in, tc_run_id_in, outcome_id_in, l_status
-                    , end_on_in, description_in
+                    , end_on_in, SUBSTR( description_in, 1, 4000)
                      );
 
          utplsql2.move_ahead_tc_runnum; -- 2.0.9.1
@@ -146,7 +146,7 @@ Added Standard Headers
          utrerror.oc_report (run_id_in
                            , outcome_id_in
                            , SQLCODE
-                           , SQLERRM
+                           , DBMS_UTILITY.FORMAT_ERROR_STACK||CHR(10)||DBMS_UTILITY.FORMAT_ERROR_BACKTRACE
                            ,    'Unable to insert or update the utr_outcome table for run '
                              || run_id_in
                              || ' outcome ID '

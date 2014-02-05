@@ -69,7 +69,7 @@ Added Standard Headers
             run_id_in,
             suite_id_in,
             SQLCODE,
-            SQLERRM,
+            DBMS_UTILITY.FORMAT_ERROR_STACK||CHR(10)||DBMS_UTILITY.FORMAT_ERROR_BACKTRACE,
                'Unable to initiate suite for run '
             || run_id_in
             || ' SUITE ID '
@@ -134,7 +134,7 @@ Added Standard Headers
             run_id_in,
             suite_id_in,
             SQLCODE,
-            SQLERRM,
+            DBMS_UTILITY.FORMAT_ERROR_STACK||CHR(10)||DBMS_UTILITY.FORMAT_ERROR_BACKTRACE,
                'Unable to insert or update the utr_suite table for run '
             || run_id_in
             || ' SUITE ID '

@@ -439,7 +439,7 @@ Added Standard Headers
             failure_msg_in=>    'Error in '
                              || eval_description
                              || ' SQLERRM: '
-                             || SQLERRM,
+                             || DBMS_UTILITY.FORMAT_ERROR_STACK||CHR(10)||DBMS_UTILITY.FORMAT_ERROR_BACKTRACE,
             check_this_in=> FALSE ,
             null_ok_in=> null_ok_in,
             raise_exc_in=> raise_exc_in
@@ -783,7 +783,7 @@ UNION
             replace_not_placeholder (
                   msg_in
                || ' SQL Failure: '
-               || SQLERRM,
+               || DBMS_UTILITY.FORMAT_ERROR_STACK||CHR(10)||DBMS_UTILITY.FORMAT_ERROR_BACKTRACE,
                SQLCODE = 0
             ),
             SQLCODE = 0,
@@ -1913,7 +1913,7 @@ UNION
                    THEN
                       setfailure (''On EQ check: '
               || eqcheck
-              || ''' || '' '' || SQLERRM, cindx, aindx);
+              || ''' || '' '' || DBMS_UTILITY.FORMAT_ERROR_STACK||CHR(10)||DBMS_UTILITY.FORMAT_ERROR_BACKTRACE, cindx, aindx);
                 END;
                 
                 cindx := '
@@ -1930,7 +1930,7 @@ UNION
           EXCEPTION
              WHEN OTHERS THEN 
                 IF :badcindx IS NULL and :badaindx IS NULL
-                THEN setfailure (SQLERRM, cindx, aindx, FALSE);
+                THEN setfailure (DBMS_UTILITY.FORMAT_ERROR_STACK||CHR(10)||DBMS_UTILITY.FORMAT_ERROR_BACKTRACE, cindx, aindx, FALSE);
                 END IF;
           END;'
              );
@@ -2179,7 +2179,7 @@ UNION
                FALSE ,
                   msg_in
                || ' SQLERROR: '
-               || SQLERRM,
+               || DBMS_UTILITY.FORMAT_ERROR_STACK||CHR(10)||DBMS_UTILITY.FORMAT_ERROR_BACKTRACE,
                check_this_in,
                badc,
                against_this_in,
@@ -2367,7 +2367,7 @@ UNION
                TRUE ,
                   msg_in
                || ' SQLERROR: '
-               || SQLERRM,
+               || DBMS_UTILITY.FORMAT_ERROR_STACK||CHR(10)||DBMS_UTILITY.FORMAT_ERROR_BACKTRACE,
                check_this_pkg_in,
                badc,
                against_this_pkg_in,

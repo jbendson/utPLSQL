@@ -100,7 +100,7 @@ Added first version of pluggable reporter packages
         
           IF NOT failover OR SQLCODE <> DYNAMIC_PLSQL_FAILURE THEN
             g_actual := DEFAULT_REPORTER;
-            pl(SQLERRM);
+            pl(DBMS_UTILITY.FORMAT_ERROR_STACK||CHR(10)||DBMS_UTILITY.FORMAT_ERROR_BACKTRACE);
             pl('** REVERTING TO DEFAULT REPORTER **');
           END IF;
          

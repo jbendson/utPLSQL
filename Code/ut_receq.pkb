@@ -61,7 +61,7 @@ Added Standard Headers
    EXCEPTION
       WHEN OTHERS
       THEN
-         utreport.pl (SQLERRM);
+         utreport.pl (DBMS_UTILITY.FORMAT_ERROR_STACK||CHR(10)||DBMS_UTILITY.FORMAT_ERROR_BACKTRACE);
          DBMS_SQL.close_cursor (v_cur);
          utreport.pl (
             'Delete failed - function probably used by another package'

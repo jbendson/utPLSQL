@@ -147,7 +147,7 @@ Added Standard Headers
          WHEN OTHERS
          THEN
             --Something else went wrong
-            UtOutputreporter.pl (SQLERRM);
+            UtOutputreporter.pl (DBMS_UTILITY.FORMAT_ERROR_STACK||CHR(10)||DBMS_UTILITY.FORMAT_ERROR_BACKTRACE);
             &start_ge_8_1 ROLLBACK; &start_ge_8_1
             RETURN;
       END;

@@ -68,7 +68,7 @@ Added Standard Headers
             run_id_in,
             unittest_id_in,
             SQLCODE,
-            SQLERRM,
+            DBMS_UTILITY.FORMAT_ERROR_STACK||CHR(10)||DBMS_UTILITY.FORMAT_ERROR_BACKTRACE,
                'Unable to initiate unit test for run '
             || run_id_in
             || ' unit test ID '
@@ -136,7 +136,7 @@ Added Standard Headers
             run_id_in,
             unittest_id_in,
             SQLCODE,
-            SQLERRM,
+            DBMS_UTILITY.FORMAT_ERROR_STACK||CHR(10)||DBMS_UTILITY.FORMAT_ERROR_BACKTRACE,
                'Unable to insert or update the utr_unittest table for run '
             || run_id_in
             || ' outcome ID '

@@ -235,7 +235,7 @@ Added Standard Headers
       WHEN OTHERS
       THEN
          utreport.pl (   'Add package error: '
-                     || SQLERRM);
+                     || DBMS_UTILITY.FORMAT_ERROR_STACK||CHR(10)||DBMS_UTILITY.FORMAT_ERROR_BACKTRACE);
          &start_ge_8_1 ROLLBACK; &start_ge_8_1
          RAISE;
    END;
@@ -287,7 +287,7 @@ Added Standard Headers
       WHEN OTHERS
       THEN
          utreport.pl (   'Remove package error: '
-                     || SQLERRM);
+                     || DBMS_UTILITY.FORMAT_ERROR_STACK||CHR(10)||DBMS_UTILITY.FORMAT_ERROR_BACKTRACE);
          &start_ge_8_1 ROLLBACK; &start_ge_8_1
          RAISE;
    END;
@@ -360,7 +360,7 @@ Added Standard Headers
       WHEN OTHERS
       THEN
          utreport.pl (   'Update package error: '
-                     || SQLERRM);
+                     || DBMS_UTILITY.FORMAT_ERROR_STACK||CHR(10)||DBMS_UTILITY.FORMAT_ERROR_BACKTRACE);
          &start_ge_8_1 ROLLBACK; &start_ge_8_1
          RAISE;
    END;

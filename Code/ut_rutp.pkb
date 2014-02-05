@@ -69,7 +69,7 @@ Added Standard Headers
             run_id_in,
             utp_id_in,
             SQLCODE,
-            SQLERRM,
+            DBMS_UTILITY.FORMAT_ERROR_STACK||CHR(10)||DBMS_UTILITY.FORMAT_ERROR_BACKTRACE,
                'Unable to initiate UTP for run '
             || run_id_in
             || ' UTP ID '
@@ -135,7 +135,7 @@ Added Standard Headers
             run_id_in,
             utp_id_in,
             SQLCODE,
-            SQLERRM,
+            DBMS_UTILITY.FORMAT_ERROR_STACK||CHR(10)||DBMS_UTILITY.FORMAT_ERROR_BACKTRACE,
                'Unable to insert or update the utr_utp table for run '
             || run_id_in
             || ' outcome ID '

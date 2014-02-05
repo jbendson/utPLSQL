@@ -185,7 +185,7 @@ Added Standard Headers
    BEGIN
       report (
          errcode_in=> SQLCODE,
-         errtext_in=> SQLERRM,
+         errtext_in=> DBMS_UTILITY.FORMAT_ERROR_STACK||CHR(10)||DBMS_UTILITY.FORMAT_ERROR_BACKTRACE,
          description_in=> message_in,
          errlevel_in=> define_in,
          recorderr=> FALSE,
