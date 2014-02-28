@@ -483,6 +483,10 @@ Added Standard Headers
    IS
    BEGIN
       init_tests;
+      
+      IF not from_suite_in THEN
+        utreport.open;
+      END IF;
 
       --Removed test for null as utConfig.prefix never returns null 
       IF      prefix_in IS NOT NULL
@@ -1105,6 +1109,8 @@ Added Standard Headers
          );
          utresult.show;
       ELSE
+         utreport.open;
+         
          FOR rec IN  (SELECT   *
                           FROM ut_package
                          WHERE suite_id = v_suite
@@ -1153,6 +1159,8 @@ begin
             SYSDATE,
             v_success
          );
+         
+        utreport.close;
       END IF;
 
       IF reset_results_in
