@@ -31,6 +31,7 @@
 @@ut_i_run ut_filereporter.pkb
 @@ut_i_run ut_htmlreporter.pkb
 @@ut_i_run ut_outputreporter.pkb
+@@ut_i_run ut_junitoutputreporter.pkb
 @@ut_i_run ut_report.pkb
 @@ut_i_run ut_pipe.pkb
 
