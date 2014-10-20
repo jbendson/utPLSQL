@@ -84,7 +84,6 @@ Added first version of pluggable reporter packages
    IS
      xt xmltype;
      results clob;
-     buff pls_integer := 2000;
      idx pls_integer := 1;
      lf constant varchar2(2) := chr(10);
      lf_idx pls_integer;
