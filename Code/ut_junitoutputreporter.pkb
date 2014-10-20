@@ -79,14 +79,29 @@ Added first version of pluggable reporter packages
      dbms_xmldom.setAttribute(summary_element, 'name', 'AllTests');
      summary_node := dbms_xmldom.appendChild(root_node,dbms_xmldom.makeNode(summary_element));
    END;
-
+   
    PROCEDURE close
    IS
      xt xmltype;
+     results clob;
+     buff pls_integer := 2000;
+     idx pls_integer := 1;
+     lf constant varchar2(2) := chr(10);
+     lf_idx pls_integer;
    BEGIN 
      xt := dbms_xmldom.getXmlType(domdoc);
      dbms_xmldom.freeDocument(domdoc);
-     dbms_output.put_line(xt.getClobVal);
+     results := xt.getClobVal;
+     loop
+       lf_idx := instr(results, lf, idx);
+       if lf_idx = 0 then
+         dbms_output.put_line(substr(results, idx));
+         exit;
+       else
+         dbms_output.put_line(substr(results, idx, lf_idx - idx));
+         idx := lf_idx + 1;
+       end if;
+     end loop;
    END;
 
    PROCEDURE pl (str VARCHAR2)
